@@ -17,6 +17,8 @@ gem 'puma', '~> 4.1'
 # gem 'bcrypt', '~> 3.1.7'
 # JSON Object Presenter for Ruby that takes business objects and breaks them down into simple hashes and serializes them to JSON
 gem 'blueprinter', '~> 0.25.0'
+# A stripped-down, bare-bones authentication library, with which you can write your own authentication flow
+gem 'sorcery', '~> 0.15.0'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
