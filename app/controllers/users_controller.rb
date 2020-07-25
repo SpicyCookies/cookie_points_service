@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
-  before_action :authenticate!, only: [:show, :update, :delete]
+  before_action :authenticate!, only: [:show, :update, :destroy]
 
   #
   # /users
