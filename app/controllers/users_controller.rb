@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   #
 
   def show
-    user_json = UserBlueprint.render current_user, view: :normal
+    user_json = UserBlueprint.render current_user, view: :normal, root: :user
     render json: user_json
   end
 
