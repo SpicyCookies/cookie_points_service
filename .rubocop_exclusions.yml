@@ -24,7 +24,7 @@ Metrics/LineLength:
   Max: 120
   Exclude:
     - '**/spec/**/*'
-    - '**/config/initializers/devise.rb'
+    - '**/config/initializers/sorcery.rb'
 
 Metrics/MethodLength:
   CountComments: false
