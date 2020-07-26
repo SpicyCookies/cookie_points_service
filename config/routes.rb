@@ -1,8 +1,10 @@
 # frozen_string_literal: true
 
+# TODO: Scope all API endpoints to api/
 Rails.application.routes.draw do
   resources :users, only: [:create]
 
+  # TODO: Scope /login to /users/login
   post '/login', to: 'users#login'
   resource :user, only: [:show, :update, :destroy]
 

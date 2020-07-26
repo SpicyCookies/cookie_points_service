@@ -6,9 +6,12 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, email: true
   validates :username,
             presence: true,
-            uniqueness: true,
+            uniqueness: { case_sensitive: false },
             format: { with: /\A[a-zA-Z0-9]+\Z/ } # Letters and numbers only
-  validates :password, length: { minimum: 6 }, on: :create
+  validates :password,
+            presence: true,
+            length: { minimum: 6, maximum: 256 },
+            if: -> { new_record? || crypted_password_changed? }
 
   def generate_jwt
     # TODO: TASK Set secret to ENV in production

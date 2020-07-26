@@ -10,15 +10,18 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @user.save!
 
-    user_json = UserBlueprint.render(
-      @user,
-      token: @user.generate_jwt,
-      view: :created,
-      root: :user
-    )
-    render json: user_json
+    if @user.save
+      user_json = UserBlueprint.render(
+        @user,
+        token: @user.generate_jwt,
+        view: :created,
+        root: :user
+      )
+      render json: user_json, status: :created
+    else
+      render json: { errors: @user.errors }, status: :bad_request
+    end
   end
 
   #
@@ -33,9 +36,9 @@ class UsersController < ApplicationController
       User.authenticate(user_params[:username], user_params[:password])
 
     if @user
-      render json: { user: { token: @user.generate_jwt } }.to_json
+      render json: { user: { token: @user.generate_jwt } }.to_json, status: :ok
     else
-      render json: { message: 'invalid username or password' }.to_json
+      render json: { error: 'invalid email, username, or password' }.to_json, status: :unauthorized
     end
   end
 
@@ -46,14 +49,15 @@ class UsersController < ApplicationController
 
   def show
     user_json = UserBlueprint.render current_user, view: :normal, root: :user
-    render json: user_json
+    render json: user_json, status: :ok
   end
 
   def update
     if current_user.update(user_params)
-      render :show
+      user_json = UserBlueprint.render current_user, view: :normal, root: :user
+      render json: user_json, status: :ok
     else
-      render json: { errors: current_user.errors }, status: :unprocessable_entity
+      render json: { errors: current_user.errors }, status: :bad_request
     end
   end
 
@@ -63,9 +67,9 @@ class UsersController < ApplicationController
         message: "Successfully deleted user #{current_user.username}"\
                  " with email #{current_user.email}"
       }
-      render json: delete_message.to_json
+      render json: delete_message.to_json, status: :ok
     else
-      render json: { errors: 'Failed to delete account!' }, status: :bad_request
+      render json: { error: 'Failed to delete account!' }, status: :bad_request
     end
   end
 
