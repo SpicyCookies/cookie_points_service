@@ -163,7 +163,7 @@ describe UsersController, type: :request do
               "errors": {
                 "email": [
                   "can't be blank",
-                  "is not an email"
+                  'is not an email'
                 ]
               }
             }.to_json
@@ -227,29 +227,29 @@ describe UsersController, type: :request do
           end
         end
 
-      context 'with invalid password length above maximum limit' do
-        let(:modified_user_password) { 'a'*257}
-        let(:error_response) do
-          {
-            "errors": {
-              "password": [
-                'is too long (maximum is 256 characters)'
-              ]
-            }
-          }.to_json
-        end
+        context 'with invalid password length above maximum limit' do
+          let(:modified_user_password) { 'a' * 257 }
+          let(:error_response) do
+            {
+              "errors": {
+                "password": [
+                  'is too long (maximum is 256 characters)'
+                ]
+              }
+            }.to_json
+          end
 
-        it 'renders bad_request status' do
-          subject
-          expect(response.status).to eq(400)
-        end
+          it 'renders bad_request status' do
+            subject
+            expect(response.status).to eq(400)
+          end
 
-        it 'renders a JSON error response' do
-          subject
-          expect(response.body).to eq(error_response)
+          it 'renders a JSON error response' do
+            subject
+            expect(response.body).to eq(error_response)
+          end
         end
       end
-    end
 
       it_behaves_like 'a token with an invalid user_id payload'
     end
@@ -446,7 +446,7 @@ describe UsersController, type: :request do
       end
 
       context 'with invalid password length above maximum limit' do
-        let(:user_password) { 'a'*257 }
+        let(:user_password) { 'a' * 257 }
         let(:error_response) do
           {
             "errors": {
@@ -620,7 +620,7 @@ describe UsersController, type: :request do
         {
           'error': {
             'class': 'Exceptions::AuthenticationError::InvalidToken',
-            'message': "JWT::DecodeError: Not enough or too many segments"
+            'message': 'JWT::DecodeError: Not enough or too many segments'
           }
         }.to_json
       end
@@ -656,7 +656,7 @@ describe UsersController, type: :request do
         {
           'error': {
             'class': 'Exceptions::AuthenticationError::InvalidToken',
-            'message': "JWT::DecodeError: Not enough or too many segments"
+            'message': 'JWT::DecodeError: Not enough or too many segments'
           }
         }.to_json
       end
@@ -681,7 +681,7 @@ describe UsersController, type: :request do
         {
           'error': {
             'class': 'Exceptions::AuthenticationError::InvalidToken',
-            'message': "JWT::DecodeError: Not enough or too many segments"
+            'message': 'JWT::DecodeError: Not enough or too many segments'
           }
         }.to_json
       end
