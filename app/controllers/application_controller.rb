@@ -9,7 +9,7 @@ class ApplicationController < ActionController::API
 
   def authenticate!
     payload, _header = JWT.decode(token, Rails.application.secrets.secret_key_base)
-    @current_user = User.find_by!(id: payload['id'])
+    @current_user = User.find(payload['id'])
   rescue ActiveRecord::RecordNotFound => e
     error_msg = "Couldn't find user with id: #{payload['id']}"
     raise Exceptions::AuthenticationError::UserNotFound, "#{e.class}: #{error_msg}"
