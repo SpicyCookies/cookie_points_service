@@ -1,6 +1,6 @@
-# Cookie Points Service
+# Cookie Points Service [Under Construction]
 
-The backend to support: https://github.com/SpicyCookies/cookie-points-react-ui
+The backend to support: https://github.com/SpicyCookies/cookie-points-react-ui [Under Construction]
 
 This project is for learning and reference purposes.
 
@@ -23,5 +23,79 @@ This project is for learning and reference purposes.
 
 # Documentation TODOs:
 - TODO: Add Swagger documentation.
-  - In the meantime, please view the Postman screenshots: https://github.com/SpicyCookies/cookie_points_service/pull/1
 - TODO: Add API documentation site.
+- TODO: Add endpoint information to Swagger and API documentation site:
+
+In the meantime, for example requests and responses, please view the Postman screenshots: https://github.com/SpicyCookies/cookie_points_service/pull/1
+
+### POST /users
+Headers:
+```
+Content-Type: application/json
+```
+
+JSON Request body:
+```
+{
+	"user": {
+		"email":"testemail@gmail.com", 
+		"password":"testpassword", 
+		"username":"testusername"
+	}
+}
+```
+
+### POST /login
+Headers:
+```
+Content-Type: application/json
+```
+
+JSON Request body:
+```
+{
+	"user": {
+		"email":"testemail@gmail.com", 
+		"password":"testpassword"
+	}
+}
+
+Or
+
+{
+	"user": {
+		"username":"testusername", 
+		"password":"testpassword"
+	}
+}
+```
+
+### GET /user
+Headers:
+```
+Authorization: Token {token}
+```
+
+### PUT /user
+Headers:
+```
+Content-Type: application/json
+Authorization: Token {token}
+```
+
+JSON Request body:
+```
+{
+	"user": {
+		"email":"testemailmodified@gmail.com",
+		"username":"testusernamemodified",
+		"password":"testpasswordmodified"
+	}
+}
+```
+
+### DELETE /user
+Headers:
+```
+Authorization: Token {token}
+```
