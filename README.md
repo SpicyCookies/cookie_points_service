@@ -23,4 +23,5 @@ This project is for learning and reference purposes.
 
 # Documentation TODOs:
 - TODO: Add Swagger documentation.
+  - In the meantime, please view the Postman screenshots: https://github.com/SpicyCookies/cookie_points_service/pull/1
 - TODO: Add API documentation site.
