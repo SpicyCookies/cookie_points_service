@@ -15,7 +15,7 @@ This project is for learning and reference purposes.
 - TODO: Add simplecov.
 
 # Functionality
-TASK-1
+## TASK-1 Add Basic User Authentication
 - [x] User can register.
 - [x] User can login with email or username.
 - [x] User can view their own user information when authenticated with a valid JWT token.
