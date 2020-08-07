@@ -1,24 +1,26 @@
-# README
+# Cookie Points Service
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The backend to support: https://github.com/SpicyCookies/cookie-points-react-ui
 
-Things you may want to cover:
+This project is for learning and reference purposes.
 
-* Ruby version
+# Installation
+1. Set up the service: `bin/setup`
+2. Run the service locally: `bundle exec rails s`
 
-* System dependencies
+# Development Tools
+- Running RuboCop linter: `bundle exec rubocop`
+- Running RSpec tests: `bundle exec rspec`
+- Running Brakeman vulnerability scan: `bundle exec brakeman`
+- TODO: Add simplecov.
 
-* Configuration
+# Functionality
+TASK-1
+- [x] User can register.
+- [x] User can login with email or username.
+- [x] User can view their own user information when authenticated with a valid JWT token.
+- [x] User can update their own user information when authenticated with a valid JWT token.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Documentation TODOs:
+- TODO: Add Swagger documentation.
+- TODO: Add API documentation site.
