@@ -31,7 +31,17 @@ RSpec.configure do |config|
             }
           }
         }
-      ]
+      ],
+      components: {
+        securitySchemes: {
+          Token: {
+            description: "The JWT token used for making authenticated requests",
+            type: :apiKey,
+            name: 'Authorization',
+            in: :header
+          }
+        },
+      }
     }
   }
 

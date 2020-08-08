@@ -1,0 +1,182 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/users":
+    post:
+      summary: Creates a user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: user created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      created_at:
+                        type: string
+                      email:
+                        type: string
+                      username:
+                        type: string
+                      token:
+                        type: string
+        '400':
+          description: invalid request
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - username
+              - password
+  "/login":
+    post:
+      summary: Logs a user in with an email
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '200':
+          description: user logged in successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+        '401':
+          description: unauthorized
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                password:
+                  type: string
+              required:
+              - email
+              - password
+  "/user":
+    get:
+      summary: Retrieves the current user's data
+      tags:
+      - User
+      security:
+      - Token: {}
+      responses:
+        '200':
+          description: user found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      created_at:
+                        type: string
+                      email:
+                        type: string
+                      username:
+                        type: string
+        '401':
+          description: current user not authenticated
+          content: {}
+    put:
+      summary: Updates the current user's data
+      tags:
+      - User
+      parameters: []
+      security:
+      - Token: {}
+      responses:
+        '200':
+          description: user updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  user:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                      created_at:
+                        type: string
+                      email:
+                        type: string
+                      username:
+                        type: string
+        '401':
+          description: current user not authenticated
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                username:
+                  type: string
+                password:
+                  type: string
+    delete:
+      summary: Deletes the current user
+      tags:
+      - User
+      security:
+      - Token: {}
+      responses:
+        '200':
+          description: user deleted
+          content: {}
+        '401':
+          description: current user not authenticated
+          content: {}
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
+components:
+  securitySchemes:
+    Token:
+      description: The JWT token used for making authenticated requests
+      type: apiKey
+      name: Authorization
+      in: header
