@@ -17,6 +17,8 @@ gem 'puma', '~> 4.1'
 # gem 'bcrypt', '~> 3.1.7'
 # JSON Object Presenter for Ruby that takes business objects and breaks them down into simple hashes and serializes them to JSON
 gem 'blueprinter', '~> 0.25.0'
+# Rails Engine that exposes your Swagger files as JSON endpoints
+gem 'rswag-api', '~> 2.3.1'
 # A stripped-down, bare-bones authentication library, with which you can write your own authentication flow
 gem 'sorcery', '~> 0.15.0'
 
@@ -42,6 +44,8 @@ group :development, :test do
   gem 'pry-byebug', '~> 3.9.0'
   # Ruby on Rails code testing tool
   gem 'rspec-rails', '~> 4.0.1'
+  # Swagger-based DSL for rspec & accompanying rake task for generating Swagger files
+  gem 'rswag-specs', '~> 2.3.1'
   # Ruby on Rails linter
   gem 'rubocop-rails', '~> 2.7.0'
 end
