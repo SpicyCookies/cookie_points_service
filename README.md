@@ -12,6 +12,7 @@ This project is for learning and reference purposes.
 - Running RuboCop linter: `bundle exec rubocop`
 - Running RSpec tests: `bundle exec rspec`
 - Running Brakeman vulnerability scan: `bundle exec brakeman`
+- Generating Swagger documentation from rswag specs: `RAILS_ENV=test rails rswag`
 - TODO: Add simplecov.
 
 # Functionality
@@ -38,8 +39,8 @@ JSON Request body:
 ```
 {
 	"user": {
-		"email":"testemail@gmail.com", 
-		"password":"testpassword", 
+		"email":"testemail@gmail.com",
+		"password":"testpassword",
 		"username":"testusername"
 	}
 }
@@ -55,7 +56,7 @@ JSON Request body:
 ```
 {
 	"user": {
-		"email":"testemail@gmail.com", 
+		"email":"testemail@gmail.com",
 		"password":"testpassword"
 	}
 }
@@ -64,7 +65,7 @@ Or
 
 {
 	"user": {
-		"username":"testusername", 
+		"username":"testusername",
 		"password":"testpassword"
 	}
 }
