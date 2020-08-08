@@ -2,6 +2,7 @@
 
 # TODO: Scope all API endpoints to api/
 Rails.application.routes.draw do
+  mount Rswag::Api::Engine => '/api-docs'
   resources :users, only: [:create]
 
   # TODO: Scope /login to /users/login
