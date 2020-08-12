@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_25_004957) do
+ActiveRecord::Schema.define(version: 2020_08_12_011602) do
+
+  create_table "organizations", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "total_members", default: 0, null: false
+    t.text "description", default: "", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["name"], name: "index_organizations_on_name", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", null: false

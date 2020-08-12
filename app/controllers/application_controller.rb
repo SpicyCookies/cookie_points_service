@@ -4,6 +4,7 @@ class ApplicationController < ActionController::API
   include ExceptionHandler
 
   rescue_from Exceptions::AuthenticationError, with: :render_auth_error
+  rescue_from Exceptions::OrganizationError, with: :render_organization_error
 
   private
 
