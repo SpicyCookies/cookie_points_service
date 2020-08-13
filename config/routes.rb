@@ -22,5 +22,12 @@ Rails.application.routes.draw do
   # Organization CRUD
   resources :organizations, only: [:index, :create, :show, :update, :destroy], format: 'json'
 
+  #
+  # Membership endpoints
+  #
+
+  # Membership CRUD
+  resources :memberships, only: [:index, :create, :show, :update, :destroy], format: 'json'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

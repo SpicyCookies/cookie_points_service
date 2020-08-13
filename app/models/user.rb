@@ -3,6 +3,9 @@
 class User < ApplicationRecord
   authenticates_with_sorcery!
 
+  has_many :memberships
+  has_many :organizations, through: :memberships
+
   validates :email, presence: true, uniqueness: true, email: true
   validates :username,
             presence: true,

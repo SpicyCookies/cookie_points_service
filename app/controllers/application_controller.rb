@@ -3,8 +3,12 @@
 class ApplicationController < ActionController::API
   include ExceptionHandler
 
+  # Handle AuthenticationErrors
   rescue_from Exceptions::AuthenticationError, with: :render_auth_error
-  rescue_from Exceptions::OrganizationError, with: :render_organization_error
+  # Handle OrganizationErrors
+  rescue_from Exceptions::OrganizationError::OrganizationNotFound, with: :render_not_found_error
+  # Handle MembershipErrors
+  rescue_from Exceptions::MembershipError::MembershipNotFound, with: :render_not_found_error
 
   private
 

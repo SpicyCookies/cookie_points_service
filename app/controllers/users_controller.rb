@@ -73,6 +73,8 @@ class UsersController < ApplicationController
     end
   end
 
+  # TODO: Add user memberships retrieval endpoint
+
   private
 
   def user_params

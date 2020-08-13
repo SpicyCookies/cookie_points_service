@@ -4,6 +4,7 @@ class OrganizationsController < ApplicationController
   before_action :authenticate!
 
   def index
+    # TODO: Add query params
     organization = Organization.all
     render json: organization.to_json, status: :ok
   end
@@ -54,6 +55,8 @@ class OrganizationsController < ApplicationController
     error_msg = "Couldn't find organization with id: #{params['id']}"
     raise Exceptions::OrganizationError::OrganizationNotFound, "#{e.class}: #{error_msg}"
   end
+
+  # TODO: Add user memberships retrieval endpoint or add memberships to CRUD responses
 
   private
 

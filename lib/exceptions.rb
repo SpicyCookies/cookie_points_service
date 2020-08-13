@@ -14,4 +14,9 @@ module Exceptions
   class OrganizationError < StandardError
     class OrganizationNotFound < OrganizationError; end
   end
+
+  # Membership exceptions
+  class MembershipError < StandardError
+    class MembershipNotFound < MembershipError; end
+  end
 end

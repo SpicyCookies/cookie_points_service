@@ -8,7 +8,7 @@ module ExceptionHandler
     render json: error_json, status: :unauthorized
   end
 
-  def render_organization_error(error)
+  def render_not_found_error(error)
     error_json = ExceptionBlueprint.render error, view: :exception, root: :error
     render json: error_json, status: :not_found
   end
