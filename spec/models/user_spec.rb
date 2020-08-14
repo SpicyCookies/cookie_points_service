@@ -3,7 +3,13 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe '#validations' do
+  describe 'associations' do
+    it { should have_many(:memberships) }
+    it { should have_many(:organizations).through(:memberships) }
+  end
+
+  # TODO: TASK Refactor specs
+  describe 'validations' do
     it 'has a valid factory' do
       expect(FactoryBot.build(:user)).to be_valid
     end
