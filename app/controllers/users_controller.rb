@@ -4,10 +4,10 @@ class UsersController < ApplicationController
   before_action :authenticate!, only: [:show, :update, :destroy]
 
   #
-  # /users
-  # Registration action
+  # User authentication
   #
 
+  # POST /users
   def create
     @user = User.new(user_params)
 
@@ -24,11 +24,7 @@ class UsersController < ApplicationController
     end
   end
 
-  #
-  # /login
-  # Login action
-  #
-
+  # POST /login
   def login
     # user will be false/nil for invalid login params
     # user will contain User record for valid login params
@@ -43,15 +39,17 @@ class UsersController < ApplicationController
   end
 
   #
-  # /user
   # User actions
+  # /user
   #
 
+  # GET /user
   def show
     user_json = UserBlueprint.render current_user, view: :normal, root: :user
     render json: user_json, status: :ok
   end
 
+  # PUT /user
   def update
     if current_user.update(user_params)
       user_json = UserBlueprint.render current_user, view: :normal, root: :user
@@ -61,6 +59,7 @@ class UsersController < ApplicationController
     end
   end
 
+  # DELETE /user
   def destroy
     if current_user.destroy
       delete_message = {
@@ -72,8 +71,6 @@ class UsersController < ApplicationController
       render json: { error: 'Failed to delete account!' }, status: :bad_request
     end
   end
-
-  # TODO: Add user memberships retrieval endpoint
 
   private
 

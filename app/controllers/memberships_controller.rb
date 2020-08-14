@@ -1,12 +1,14 @@
 # frozen_string_literal: true
 
 class MembershipsController < ApplicationController
+  # GET /memberships
+  # Endpoint functionality used by Users and Organizations
   def index
-    # TODO: Add query params
     membership = Membership.all
     render json: membership.to_json, status: :ok
   end
 
+  # POST /memberships
   def create
     membership = Membership.new(membership_params)
 
@@ -17,6 +19,7 @@ class MembershipsController < ApplicationController
     end
   end
 
+  # GET /memberships/{id}
   def show
     membership = Membership.find params[:id]
     render json: membership.to_json, status: :ok
@@ -25,6 +28,7 @@ class MembershipsController < ApplicationController
     raise Exceptions::MembershipError::MembershipNotFound, "#{e.class}: #{error_msg}"
   end
 
+  # PUT /memberships/{id}
   def update
     membership = Membership.find(params[:id])
 
@@ -38,6 +42,7 @@ class MembershipsController < ApplicationController
     raise Exceptions::MembershipError::MembershipNotFound, "#{e.class}: #{error_msg}"
   end
 
+  # DELETE /memberships/{id}
   def destroy
     membership = Membership.find(params[:id])
 

@@ -3,12 +3,23 @@
 class OrganizationsController < ApplicationController
   before_action :authenticate!
 
+  # GET /organizations
   def index
-    # TODO: Add query params
-    organization = Organization.all
+    # Permitted query params
+    permitted_name_param = params.permit(:name)
+
+    organization = if permitted_name_param[:name].present?
+      # Return [result] or [] when passed a name in the query params
+      Array Organization.find_by(name: permitted_name_param[:name]) || []
+    else
+      # Return all organizations when not passed query params
+      Organization.all
+    end
+
     render json: organization.to_json, status: :ok
   end
 
+  # POST /organizations
   def create
     organization = Organization.new(organization_params)
 
@@ -19,6 +30,7 @@ class OrganizationsController < ApplicationController
     end
   end
 
+  # GET /organizations/{id}
   def show
     organization = Organization.find params[:id]
     render json: organization.to_json, status: :ok
@@ -27,6 +39,7 @@ class OrganizationsController < ApplicationController
     raise Exceptions::OrganizationError::OrganizationNotFound, "#{e.class}: #{error_msg}"
   end
 
+  # PUT /organizations/{id}
   def update
     organization = Organization.find(params[:id])
 
@@ -40,6 +53,7 @@ class OrganizationsController < ApplicationController
     raise Exceptions::OrganizationError::OrganizationNotFound, "#{e.class}: #{error_msg}"
   end
 
+  # DELETE /organizations/{id}
   def destroy
     organization = Organization.find(params[:id])
 
@@ -55,8 +69,6 @@ class OrganizationsController < ApplicationController
     error_msg = "Couldn't find organization with id: #{params['id']}"
     raise Exceptions::OrganizationError::OrganizationNotFound, "#{e.class}: #{error_msg}"
   end
-
-  # TODO: Add user memberships retrieval endpoint or add memberships to CRUD responses
 
   private
 

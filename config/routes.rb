@@ -9,18 +9,24 @@ Rails.application.routes.draw do
   # TODO: Scope /login to /users/login
 
   # Registration
-  resources :users, only: [:create]
+  resources :users, only: [:create], format: 'json'
+
   # Login
-  post '/login', to: 'users#login'
+  post '/login', to: 'users#login', format: 'json'
+
   # Current user actions
-  resource :user, only: [:show, :update, :destroy]
+  resource :user, only: [:show, :update, :destroy], format: 'json' do
+    resources :memberships, only: [:index], format: 'json'
+  end
 
   #
   # Organization endpoints
   #
 
   # Organization CRUD
-  resources :organizations, only: [:index, :create, :show, :update, :destroy], format: 'json'
+  resources :organizations, only: [:index, :create, :show, :update, :destroy], format: 'json' do
+    resources :memberships, only: [:index], format: 'json'
+  end
 
   #
   # Membership endpoints
