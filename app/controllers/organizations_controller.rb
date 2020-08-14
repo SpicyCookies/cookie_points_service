@@ -9,12 +9,12 @@ class OrganizationsController < ApplicationController
     permitted_name_param = params.permit(:name)
 
     organization = if permitted_name_param[:name].present?
-      # Return [result] or [] when passed a name in the query params
-      Array Organization.find_by(name: permitted_name_param[:name]) || []
-    else
-      # Return all organizations when not passed query params
-      Organization.all
-    end
+                     # Return [result] or [] when passed a name in the query params
+                     Array Organization.find_by(name: permitted_name_param[:name]) || []
+                   else
+                     # Return all organizations when not passed query params
+                     Organization.all
+                   end
 
     render json: organization.to_json, status: :ok
   end

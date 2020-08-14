@@ -4,7 +4,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   describe 'associations' do
-    it { should have_many(:memberships) }
+    it { should have_many(:memberships).dependent(:destroy) }
     it { should have_many(:organizations).through(:memberships) }
   end
 

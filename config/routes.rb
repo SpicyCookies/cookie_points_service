@@ -2,7 +2,6 @@
 
 # TODO: Scope all API endpoints to api/
 Rails.application.routes.draw do
-
   #
   # User endpoints
   #
