@@ -136,7 +136,7 @@ describe OrganizationsController, type: :request do
         let(:error_response) do
           {
             errors: {
-              :"#{attribute}" => ['can\'t be blank']
+              "#{attribute}": ['can\'t be blank']
             }
           }
         end
@@ -293,7 +293,7 @@ describe OrganizationsController, type: :request do
         let(:error_response) do
           {
             errors: {
-              :"#{attribute}" => ['can\'t be blank']
+              "#{attribute}": ['can\'t be blank']
             }
           }
         end
@@ -375,7 +375,7 @@ describe OrganizationsController, type: :request do
         before do
           allow(Organization)
             .to receive(:find)
-            .with("#{organization_id}")
+            .with(organization_id.to_s)
             .and_return(mock_organization)
         end
 
@@ -454,7 +454,7 @@ describe OrganizationsController, type: :request do
     end
 
     context 'with GET /organizations/{id} request' do
-      subject { get "/organizations/1", headers: headers }
+      subject { get '/organizations/1', headers: headers }
 
       it 'renders an unauthorized error' do
         subject
@@ -473,7 +473,7 @@ describe OrganizationsController, type: :request do
       end
 
       subject do
-        put "/organizations/1", params: modified_organization_params.to_json, headers: headers
+        put '/organizations/1', params: modified_organization_params.to_json, headers: headers
       end
 
       it 'renders an unauthorized error' do
@@ -484,7 +484,7 @@ describe OrganizationsController, type: :request do
     end
 
     context 'with DELETE /organizations/{id} request' do
-      subject { delete "/organizations/1", headers: headers }
+      subject { delete '/organizations/1', headers: headers }
 
       it 'renders an unauthorized error' do
         subject

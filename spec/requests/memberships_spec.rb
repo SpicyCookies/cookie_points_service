@@ -92,7 +92,7 @@ describe MembershipsController, type: :request do
         let(:error_response) do
           {
             errors: {
-              :"#{attribute}" => ['must exist']
+              "#{attribute}": ['must exist']
             }
           }
         end
@@ -234,7 +234,7 @@ describe MembershipsController, type: :request do
         let(:error_response) do
           {
             errors: {
-              :"#{attribute}" => ['must exist']
+              "#{attribute}": ['must exist']
             }
           }
         end
@@ -294,7 +294,7 @@ describe MembershipsController, type: :request do
         before do
           allow(Membership)
             .to receive(:find)
-            .with("#{membership_id}")
+            .with(membership_id.to_s)
             .and_return(mock_membership)
         end
 
@@ -407,7 +407,7 @@ describe MembershipsController, type: :request do
     end
 
     context 'with DELETE /memberships/{id} request' do
-      subject { delete "/memberships/1", headers: headers }
+      subject { delete '/memberships/1', headers: headers }
 
       it 'renders an unauthorized error' do
         subject
