@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class MembershipsController < ApplicationController
+  before_action :authenticate!
+
   # GET /memberships
   # Endpoint functionality used by Users and Organizations
   def index
