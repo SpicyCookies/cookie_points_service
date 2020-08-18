@@ -17,8 +17,17 @@ RSpec.describe Membership, type: :model do
       # Populate attributes before calling Shoulda matcher
       subject { Membership.new(user_id: 1, organization_id: 1) }
 
-      it { should validate_uniqueness_of(:user_id).case_insensitive }
-      it { should validate_uniqueness_of(:organization_id).case_insensitive }
+      it do
+        should validate_uniqueness_of(:user_id)
+          .case_insensitive
+          .scoped_to(:organization_id)
+      end
+
+      it do
+        should validate_uniqueness_of(:organization_id)
+          .case_insensitive
+          .scoped_to(:user_id)
+      end
     end
   end
 end
