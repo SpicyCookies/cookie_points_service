@@ -92,7 +92,8 @@ describe MembershipsController, type: :request do
         let(:error_response) do
           {
             errors: {
-              "#{attribute}": ['must exist']
+              "#{attribute}": ['must exist'],
+              "#{attribute}_id": ["can\'t be blank"]
             }
           }
         end
@@ -234,7 +235,8 @@ describe MembershipsController, type: :request do
         let(:error_response) do
           {
             errors: {
-              "#{attribute}": ['must exist']
+              "#{attribute}": ['must exist'],
+              "#{attribute}_id": ["can\'t be blank"]
             }
           }
         end
