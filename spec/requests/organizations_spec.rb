@@ -411,6 +411,60 @@ describe OrganizationsController, type: :request do
         end
       end
     end
+
+    context 'with GET /organizations/{id}/memberships request' do
+      let(:organization) do
+        FactoryBot.create(
+          :organization,
+          name: organization_name,
+          total_members: organization_total_members,
+          description: organization_description
+        )
+      end
+      let(:organization_id) { organization.id }
+      let(:organization_id_param) { organization_id }
+
+      before do
+        user
+        organization
+        FactoryBot.create(
+          :membership,
+          user_id: user_id,
+          organization_id: organization_id
+        )
+      end
+
+      subject do
+        get "/organizations/#{organization_id_param}/memberships", headers: headers
+      end
+
+      it "successfully retrieve an organization\'s memberships" do
+        subject
+        expect(response).to have_http_status(200)
+        response_body = JSON.parse(response.body)
+        expect(response_body[0]['user_id']).to eq(user_id)
+        expect(response_body[0]['organization_id']).to eq(organization_id)
+      end
+
+      context 'with an invalid lookup id' do
+        let(:organization_id_param) { 12345 }
+
+        let(:error_response) do
+          {
+            error: {
+              class: 'Exceptions::OrganizationError::OrganizationNotFound',
+              message: "ActiveRecord::RecordNotFound: Couldn't find organization with id: #{organization_id_param}"
+            }
+          }
+        end
+
+        it 'renders a not found' do
+          subject
+          expect(response).to have_http_status(404)
+          expect(response.body).to eq(error_response.to_json)
+        end
+      end
+    end
   end
 
   describe 'unauthenticated requests' do
@@ -485,6 +539,16 @@ describe OrganizationsController, type: :request do
 
     context 'with DELETE /organizations/{id} request' do
       subject { delete '/organizations/1', headers: headers }
+
+      it 'renders an unauthorized error' do
+        subject
+        expect(response).to have_http_status(401)
+        expect(response.body).to eq(error_response.to_json)
+      end
+    end
+
+    context 'with DELETE /organizations/{id}/memberships request' do
+      subject { get '/organizations/1/memberships', headers: headers }
 
       it 'renders an unauthorized error' do
         subject

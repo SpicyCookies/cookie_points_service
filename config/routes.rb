@@ -15,7 +15,7 @@ Rails.application.routes.draw do
 
   # Current user actions
   resource :user, only: [:show, :update, :destroy], format: 'json' do
-    resources :memberships, only: [:index], format: 'json'
+    get 'memberships', to: 'users#memberships', format: 'json'
   end
 
   #
@@ -23,9 +23,8 @@ Rails.application.routes.draw do
   #
 
   # Organization CRUD
-  resources :organizations, only: [:index, :create, :show, :update, :destroy], format: 'json' do
-    resources :memberships, only: [:index], format: 'json'
-  end
+  resources :organizations, only: [:index, :create, :show, :update, :destroy], format: 'json'
+  get 'organizations/:id/memberships', to: 'organizations#memberships', format: 'json'
 
   #
   # Membership endpoints

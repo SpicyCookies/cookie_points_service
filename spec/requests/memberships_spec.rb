@@ -55,7 +55,7 @@ describe MembershipsController, type: :request do
         get '/memberships', headers: headers
       end
 
-      it 'successfully retrieve an membership array' do
+      it 'successfully retrieve a membership array' do
         subject
         expect(response).to have_http_status(200)
         response_body = JSON.parse(response.body)

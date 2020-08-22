@@ -6,8 +6,8 @@ class MembershipsController < ApplicationController
   # GET /memberships
   # Endpoint functionality used by Users and Organizations
   def index
-    membership = Membership.all
-    render json: membership.to_json, status: :ok
+    memberships = Membership.all
+    render json: memberships.to_json, status: :ok
   end
 
   # POST /memberships

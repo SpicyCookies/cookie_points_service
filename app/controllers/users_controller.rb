@@ -72,6 +72,12 @@ class UsersController < ApplicationController
     end
   end
 
+  # GET /user/memberships
+  def memberships
+    memberships = current_user.memberships
+    render json: memberships, status: :ok
+  end
+
   private
 
   def user_params

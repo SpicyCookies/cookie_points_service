@@ -70,6 +70,16 @@ class OrganizationsController < ApplicationController
     raise Exceptions::OrganizationError::OrganizationNotFound, "#{e.class}: #{error_msg}"
   end
 
+  # GET /organizations/{id}/memberships
+  def memberships
+    organization = Organization.find(params[:id])
+    memberships = organization.memberships
+    render json: memberships.to_json, status: :ok
+  rescue ActiveRecord::RecordNotFound => e
+    error_msg = "Couldn't find organization with id: #{params['id']}"
+    raise Exceptions::OrganizationError::OrganizationNotFound, "#{e.class}: #{error_msg}"
+  end
+
   private
 
   def organization_params
