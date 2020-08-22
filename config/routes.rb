@@ -23,7 +23,9 @@ Rails.application.routes.draw do
   #
 
   # Organization CRUD
-  resources :organizations, only: [:index, :create, :show, :update, :destroy], format: 'json'
+  resources :organizations, only: [:index, :create, :show, :update, :destroy], format: 'json' do
+    resources :events, only: [:index, :create, :show, :update, :destroy], format: 'json'
+  end
   get 'organizations/:id/memberships', to: 'organizations#memberships', format: 'json'
 
   #

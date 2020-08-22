@@ -9,6 +9,8 @@ class ApplicationController < ActionController::API
   rescue_from Exceptions::OrganizationError::OrganizationNotFound, with: :render_not_found_error
   # Handle MembershipErrors
   rescue_from Exceptions::MembershipError::MembershipNotFound, with: :render_not_found_error
+  # Handle EventErrors
+  rescue_from Exceptions::EventError::EventNotFound, with: :render_not_found_error
 
   private
 

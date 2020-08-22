@@ -4,7 +4,6 @@ class MembershipsController < ApplicationController
   before_action :authenticate!
 
   # GET /memberships
-  # Endpoint functionality used by Users and Organizations
   def index
     memberships = Membership.all
     render json: memberships.to_json, status: :ok
