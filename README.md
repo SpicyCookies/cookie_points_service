@@ -22,7 +22,7 @@ This project is for learning and reference purposes.
 - [x] User can update their own user information when authenticated with a valid JWT token.
 - [x] User can delete their own record.
 
-## TASK-3 Add Organization and Membership
+## TASK-3 Add Organization and Membership [TODO: Documentation site]
 - [x] Can perform CRUD operations on organization and membership.
 - [x] Can query by name for an organization.
 - [x] Organizations and users can view their memberships.
@@ -109,7 +109,7 @@ Authorization: Token {token}
 ```
 
 ## Organizations
-TODO: Documentation.
+TODO: Documentation site. TASK-2.
 
 ## Memberships
-TODO: Documentation.
+TODO: Documentation site. TASK-2.
