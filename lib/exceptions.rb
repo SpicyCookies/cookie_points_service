@@ -9,4 +9,14 @@ module Exceptions
     class InvalidToken < AuthenticationError; end
     class InternalServerError < AuthenticationError; end
   end
+
+  # Organization exceptions
+  class OrganizationError < StandardError
+    class OrganizationNotFound < OrganizationError; end
+  end
+
+  # Membership exceptions
+  class MembershipError < StandardError
+    class MembershipNotFound < MembershipError; end
+  end
 end

@@ -44,6 +44,9 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.1'
   # Ruby on Rails linter
   gem 'rubocop-rails', '~> 2.7.0'
+  # Shoulda Matchers provides RSpec compatible one-liners to test common Rails functionality that,
+  # if written by hand, would be much longer, more complex, and error-prone.
+  gem 'shoulda-matchers', '~> 4.0'
 end
 
 group :development do

@@ -320,6 +320,44 @@ describe UsersController, type: :request do
         it_behaves_like 'a token with an invalid user_id payload'
       end
     end
+
+    context 'with GET /user/memberships request' do
+      let(:organization) { FactoryBot.create(:organization) }
+      let(:organization_id) { organization.id }
+      let(:membership) do
+        FactoryBot.create(
+          :membership,
+          user_id: user_id,
+          organization_id: organization_id
+        )
+      end
+      let(:membership_id) { membership.id }
+
+      before do
+        user
+        organization
+        membership
+      end
+
+      subject do
+        get '/user/memberships', params: {}, headers: headers
+      end
+
+      it 'allows show action' do
+        subject
+        expect(response.status).to eq(200)
+      end
+
+      it 'displays user memberships' do
+        subject
+        response_body = JSON.parse(response.body)
+        expect(response_body[0]['id']).to eq(membership_id)
+        expect(response_body[0]['user_id']).to eq(user_id)
+        expect(response_body[0]['organization_id']).to eq(organization_id)
+      end
+
+      it_behaves_like 'a token with an invalid user_id payload'
+    end
   end
 
   describe 'unauthenticated requests' do
@@ -696,6 +734,31 @@ describe UsersController, type: :request do
       end
 
       it 'does not display user deletion message and renders access denied message' do
+        subject
+        expect(response.body).to eq(expected_response_body)
+      end
+    end
+
+    context 'with GET /user/memberships request' do
+      let(:expected_response_body) do
+        {
+          'error': {
+            'class': 'Exceptions::AuthenticationError::InvalidToken',
+            'message': 'JWT::DecodeError: Not enough or too many segments'
+          }
+        }.to_json
+      end
+
+      subject do
+        get '/user/memberships', params: {}, headers: headers
+      end
+
+      it 'denys user/memberships action' do
+        subject
+        expect(response.status).to eq(401)
+      end
+
+      it 'does not display user memberships and renders access denied message' do
         subject
         expect(response.body).to eq(expected_response_body)
       end
