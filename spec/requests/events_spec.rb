@@ -75,9 +75,9 @@ describe EventsController, type: :request do
       let(:end_time) { '2020-08-18T02:32:55.501Z' }
       let(:event_params) do
         {
-      		name: name,
-      		description: description,
-      		start_time: start_time,
+          name: name,
+          description: description,
+          start_time: start_time,
           end_time: end_time
         }
       end
@@ -120,10 +120,10 @@ describe EventsController, type: :request do
       context 'with a blank name' do
         let(:event_params) do
           {
-        		name: nil,
-        		description: "Test description.",
-        		startTime: "2020-08-18T02:32:55.501Z",
-        		endTime: "2020-08-18T02:32:55.501Z"
+            name: nil,
+            description: 'Test description.',
+            startTime: '2020-08-18T02:32:55.501Z',
+            endTime: '2020-08-18T02:32:55.501Z'
           }
         end
 
@@ -133,10 +133,10 @@ describe EventsController, type: :request do
       context 'with a blank description' do
         let(:event_params) do
           {
-        		name: 'test_name',
-        		description: nil,
-        		startTime: "2020-08-18T02:32:55.501Z",
-        		endTime: "2020-08-18T02:32:55.501Z"
+            name: 'test_name',
+            description: nil,
+            startTime: '2020-08-18T02:32:55.501Z',
+            endTime: '2020-08-18T02:32:55.501Z'
           }
         end
 
@@ -146,10 +146,10 @@ describe EventsController, type: :request do
       context 'with a blank start time' do
         let(:event_params) do
           {
-        		name: 'test_name',
-        		description: "Test description.",
-        		startTime: nil,
-        		endTime: "2020-08-18T02:32:55.501Z"
+            name: 'test_name',
+            description: 'Test description.',
+            startTime: nil,
+            endTime: '2020-08-18T02:32:55.501Z'
           }
         end
 
@@ -159,10 +159,10 @@ describe EventsController, type: :request do
       context 'with a blank end time' do
         let(:event_params) do
           {
-        		name: 'test_name',
-        		description: "Test description.",
-        		startTime: "2020-08-18T02:32:55.501Z",
-        		endTime: nil
+            name: 'test_name',
+            description: 'Test description.',
+            startTime: '2020-08-18T02:32:55.501Z',
+            endTime: nil
           }
         end
 
