@@ -19,4 +19,9 @@ module Exceptions
   class MembershipError < StandardError
     class MembershipNotFound < MembershipError; end
   end
+
+  # Event exceptions
+  class EventError < StandardError
+    class EventNotFound < EventError; end
+  end
 end
